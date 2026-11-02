@@ -1,0 +1,6 @@
+cff-version: 1.2.0
+title: "Ancient Text Research"
+message: "If you use this software, please cite it as a research prototype."
+type: software
+authors:
+  - name: "b-clown-code"

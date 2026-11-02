@@ -1,0 +1,23 @@
+name: CPU fixtures
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.11"
+      - name: Install CPU test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy tokenizers
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Catalog utility fixtures
+        run: python -m unittest discover -s tools -p 'test_catalog_corpus.py' -v
+      - name: Retrieval, tokenizer, and model fixtures
+        run: python -m unittest discover -s tests -v
